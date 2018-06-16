@@ -203,7 +203,7 @@ param_payload_perms = list(itertools.product(params, [ident]))
 
 random.shuffle(param_payload_perms)
 
-print("Inital requests planed: {}".format(len(param_payload_perms)))
+print("Initial requests planned: {}".format(len(param_payload_perms)))
 
 requestsMade = 0
 startTime = time.time()
@@ -247,7 +247,7 @@ class WorkerThread(threading.Thread):
             except Exception as e:
                 # Just in case we have a valid exception, because requests failed not by Timeout or MaxRetries,
                 # force thread to stop... you will have to check this error out...
-
+                print(e)
                 print(
                     "Unknown exception caught... to prevent infinite loops, thread has to stop..."
                 )

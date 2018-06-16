@@ -20,6 +20,17 @@ Optional parameters:
 ### Hints
 Using the default payload may result in a lot of false results.
 
+### Screenshots
+
+XSS on a starbucks subdomain
+
+![s](https://i.imgur.com/hrIep5K.png)
+
+XSS on a General Motors subdomain
+
+![v](https://i.imgur.com/eanQkRk.png)
+
+
 ## checkRandomParameters.py
 
 __How to execute (Way 1):__
@@ -46,6 +57,16 @@ Using the "--extended" flag will result in aditional checks if a parameter is fo
 
 ### Hints
 Some websites reflect the requested url this results in a lot false results WHEN the payload is something very simple like "abcdefg27sjs93" - see netflix.com or uber.com for instance. Thats why I'm not using the standard alphanumerical payload and instead choosing something like 'XSS">' or 'XSS"'. In that case I wouldnt also use the extended mode (because you basically doing extended search). If you have a victim where the request url is not reflected you should use the extended flag with a simple playload like the default one.
+
+### Screenshots
+
+Script bruteforces parameters and finds "year" parameter which is reflected (basic check) and then validated using extended checks (with special characters...)
+
+![d](https://i.imgur.com/AmIxJnV.png)
+
+I didnt pass a parameter wordlist, this forces the script to search for input fields and use the name/id as get parameters.
+
+![ds](https://i.imgur.com/n8AN7u3.png)
 
 ## Wordlist
 

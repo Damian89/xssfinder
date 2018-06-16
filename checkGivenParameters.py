@@ -108,6 +108,7 @@ def requestUrlAndCheckForReflection(testUrlParams):
                 print(" \033[31mPayload found in http body.\033[0m")
 
         except Exception as e:
+            print(e)
             print("Exception was thrown...")
 
         print("")
