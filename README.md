@@ -1,6 +1,10 @@
 # XSS Finder
 
-Some simple helper scripts which I'm using frequently to find xss. Keep in mind: __Do not trust scripts only__! Sometimes the vulnerability is more complex and needs special treatment ;) This script won't find dom bases/dynamic xss!
+Some simple tools which I'm using frequently to find XSS. Keep in mind: __Do not trust scripts only__! Sometimes the vulnerability is more complex and needs special treatment ;) Those scripts won't find dom bases/dynamic XSS!
+
+## Why another XSS Find Tool?
+
+Because most tools I tested did not find simple reflected XSS - that's why I hacked this script together. And it works... if you know how to use it.
 
 ## checkGivenParameters.py
 
