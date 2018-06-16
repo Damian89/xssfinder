@@ -10,6 +10,7 @@ Because most tools I tested did not find simple reflected XSS - that's why I hac
 
 __How to execute:__
 
+
 ```
 python3 checkGivenParameters.py -url "http://victim/?param1=test&param2=test2&foo=bar" -payload '[XSS"]'
 ```
