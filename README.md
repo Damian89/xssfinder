@@ -1,6 +1,6 @@
-# Tools for finding simple xss
+# XSS Finder
 
-Some simple helper scripts which I'm using frequently for finding xss - using those scripts I was able to find xss on some Netflix, Toyota and Starbucks subdomains.
+Some simple helper scripts which I'm using frequently to find xss. Keep in mind: __Do not trust scripts only__! Sometimes the vulnerability is more complex and needs special treatment ;) This script won't find dom bases/dynamic xss!
 
 ## checkGivenParameters.py
 
