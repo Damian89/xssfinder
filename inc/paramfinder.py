@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # coding: utf8
 
-from bs4 import BeautifulSoup
 from inc.misc.Alert import Alert
 import re
 
@@ -9,52 +8,18 @@ import re
 def getInterestingParameters(content):
     customParameters = []
 
-    soup = BeautifulSoup(content, 'html.parser')
-
-    for input in soup.find_all("input"):
-
-        if input.get("id") != None:
-            customParameters.append(input.get("id"))
-
-        if input.get("name") != None:
-            customParameters.append(input.get("name"))
-
-    for input in soup.find_all("select"):
-
-        if input.get("id") != None:
-            customParameters.append(input.get("id"))
-
-        if input.get("name") != None:
-            customParameters.append(input.get("name"))
-
-    for input in soup.find_all("textarea"):
-
-        if input.get("id") != None:
-            customParameters.append(input.get("id"))
-
-        if input.get("name") != None:
-            customParameters.append(input.get("name"))
-
-    for input in soup.find_all("checkbox"):
-
-        if input.get("id") != None:
-            customParameters.append(input.get("id"))
-
-        if input.get("name") != None:
-            customParameters.append(input.get("name"))
-
-    for input in soup.find_all("button"):
-
-        if input.get("id") != None:
-            customParameters.append(input.get("id"))
-
-        if input.get("name") != None:
-
-            customParameters.append(input.get("name"))
-
+    """ Whats this? Extracting all data-* attributes ;) """
     dataattributes = list(set(re.findall(' data-([a-zA-Z0-9\-\_]+)', content)))
 
-    return customParameters+dataattributes
+    """ Get all ids of every element ;) """
+    elementids_1 = list(set(re.findall(' id="([a-zA-Z0-9\-\_]+)"', content)))
+    elementids_2 = list(set(re.findall(' id=\'([a-zA-Z0-9\-\_]+)\'', content)))
+
+    """ Get all names of every element ;) """
+    elementnames_1 = list(set(re.findall(' name="([a-zA-Z0-9\-\_]+)"', content)))
+    elementnames_2 = list(set(re.findall(' name=\'([a-zA-Z0-9\-\_]+)\'', content)))
+
+    return list(set(customParameters + dataattributes + elementids_1 + elementids_2 + elementnames_1 + elementnames_2))
 
 
 def reportParameterFindingInDom(interestingParameters):

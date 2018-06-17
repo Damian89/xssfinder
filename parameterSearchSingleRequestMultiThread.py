@@ -179,9 +179,14 @@ try:
         if input.get("name") != None:
             customParameters.append(input.get("name"))
 
+    """ Whats this? Extracting all data-* attributes ;) """
     dataattributes = list(set(re.findall(' data-([a-zA-Z0-9\-\_]+)', content)))
 
-    customParameters = customParameters + dataattributes
+    """ Get all ids ;) """
+    elementids_1 = list(set(re.findall(' id="([a-zA-Z0-9\-\_]+)"', content)))
+    elementids_2 = list(set(re.findall(' id=\'([a-zA-Z0-9\-\_]+)\'', content)))
+
+    customParameters = customParameters + dataattributes + elementids_1 + elementids_2
 
 except Exception as e:
     pass
