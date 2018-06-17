@@ -54,7 +54,6 @@ parser.add_argument(
     default="9cdfb439c7876e703e307864c9167a15"
 )
 
-
 args = parser.parse_args()
 
 if args.url is None:

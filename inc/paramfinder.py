@@ -3,6 +3,7 @@
 
 from bs4 import BeautifulSoup
 from inc.misc.Alert import Alert
+import re
 
 
 def getInterestingParameters(content):
@@ -51,7 +52,9 @@ def getInterestingParameters(content):
 
             customParameters.append(input.get("name"))
 
-    return customParameters
+    dataattributes = list(set(re.findall(' data-([a-zA-Z0-9\-\_]+)', content)))
+
+    return customParameters+dataattributes
 
 
 def reportParameterFindingInDom(interestingParameters):

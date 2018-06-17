@@ -23,6 +23,7 @@ if sys.version_info < (3, 0):
     sys.stdout.write("Sorry, requires Python 3.x\n")
     sys.exit(1)
 
+import re
 import os
 import threading
 import queue
@@ -33,7 +34,6 @@ import time
 import random
 import argparse
 from bs4 import BeautifulSoup
-
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -178,6 +178,10 @@ try:
 
         if input.get("name") != None:
             customParameters.append(input.get("name"))
+
+    dataattributes = list(set(re.findall(' data-([a-zA-Z0-9\-\_]+)', content)))
+
+    customParameters = customParameters + dataattributes
 
 except Exception as e:
     pass
