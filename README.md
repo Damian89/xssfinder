@@ -36,12 +36,12 @@ XSS on a General Motors subdomain
 ![v](https://i.imgur.com/eanQkRk.png)
 
 
-## checkRandomParameters.py
+## parameterSearchSingleRequestMultiThread.py
 
-__How to execute (Way 1):__
+__How to execute:__
 
 ```
-python3 checkRandomParameters.py -url "http://victim/" -payload '[XSS"]' -paramlist /path/to/params.txt -threads 10 -timeout 3600 --verbose --extended
+python3 parameterSearchSingleRequestMultiThread.py -url "http://victim/" -payload '[XSS"]' -paramlist /path/to/params.txt -threads 10 -timeout 3600 --verbose --extended
 ```
 
 This scripts...
@@ -72,6 +72,39 @@ Script bruteforces parameters and finds "year" parameter which is reflected (bas
 I didnt pass a parameter wordlist, this forces the script to search for input fields and use the name/id as get parameters.
 
 ![ds](https://i.imgur.com/n8AN7u3.png)
+
+
+## parameterSearchInChunksSingleThread.py
+
+__How to execute:__
+
+```
+python3 parameterSearchInChunksSingleThread.py -url "http://victim/" -paramlist params.txt --extended -extendedchar "<" -chunksize 100 --verbose
+```
+
+This scripts...
+- searches for inputs, textareas, selects, buttons and uses their name/id as additional get parameters
+- adds also the current urls get parameters (if the exist)
+- Creates for every parameter a custom payload, creates then even sized chunks
+- a param-value query string based on every chunk is generated and then requested, response is checked for every payload
+
+Optional parameters:
+- paramlist
+- verbose
+- extended
+- chunksize
+- extendedchar
+
+### Screenshots
+
+Checking Brute Logic XSS Page with parameter wordlist...
+![ds](https://i.imgur.com/smuy2yJ.png)
+
+Checking Brute Logic XSS Page without parameter wordlist...
+![ds](https://i.imgur.com/Ee4iolo.png)
+
+Checking Starbucks subdomain (with xss):
+![ds](https://i.imgur.com/un63HKZ.png)
 
 ## Wordlist
 
