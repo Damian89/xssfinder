@@ -79,7 +79,7 @@ I didnt pass a parameter wordlist, this forces the script to search for input fi
 __How to execute:__
 
 ```
-python3 parameterSearchInChunksSingleThread.py -url "http://victim/" -paramlist params.txt --extended -extendedchar "<" -chunksize 100 --verbose
+python3 parameterSearchInChunksSingleThread.py -url "http://victim/" -paramlist params.txt --extended -extendedchar "<" -chunksize 75 --verbose
 ```
 
 This scripts...
@@ -92,7 +92,7 @@ Optional parameters:
 - paramlist
 - verbose
 - extended
-- chunksize
+- chunksize (default: 75, using a bigger value may result in server errors due small client buffer settings!!)
 - extendedchar
 
 ### Screenshots
@@ -109,4 +109,5 @@ Checking Starbucks subdomain (with xss):
 ## Wordlist
 
 Thanks to Daniel Miessler for the parameter wordlist: https://github.com/danielmiessler/SecLists
+
 I added some custom parameters ;)

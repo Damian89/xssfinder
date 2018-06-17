@@ -45,10 +45,10 @@ def parseArguments():
 
     parser.add_argument(
         '-chunksize',
-        help='Chunksize for parameters tested in one request (default: 100)',
+        help='Chunksize for parameters tested in one request (default: 75)',
         type=int,
         dest='chunksize',
-        default=100
+        default=75
     )
 
     parser.add_argument(

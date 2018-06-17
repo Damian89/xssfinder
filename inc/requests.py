@@ -22,10 +22,10 @@ def request(url, verbose=False):
         if res.status_code is 200 and verbose:
             print(Alert.success() + "Statuscode 200")
 
-        if res.status_code > 200 and res.status_code < 500 and verbose:
+        if res.status_code > 200 and res.status_code < 500:
             print(Alert.warning() + "Statuscode {}".format(res.status_code))
 
-        if res.status_code >= 500 and verbose:
+        if res.status_code >= 500:
             print(Alert.error() + "Statuscode {}".format(res.status_code))
 
         if res.text is None or res.text is '':
