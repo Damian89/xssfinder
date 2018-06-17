@@ -5,11 +5,12 @@ import requests
 from inc.misc.Alert import Alert
 import sys
 import urllib3
+import time
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
-def request(url, verbose=False):
+def request(url, verbose=False, waittime=0):
     if verbose:
         print(Alert.info() + "Scraping '{}' ...".format(url))
 
@@ -31,6 +32,11 @@ def request(url, verbose=False):
         if res.text is None or res.text is '':
             print(Alert.error() + "No content fetched... (WAF?)")
 
+        if waittime > 0 and verbose:
+            print(Alert.info() + "Waiting {} seconds...".format(waittime))
+
+        if waittime > 0:
+            time.sleep(waittime)
         return res.text
 
     except Exception as e:

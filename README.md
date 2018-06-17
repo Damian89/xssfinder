@@ -79,7 +79,7 @@ I didnt pass a parameter wordlist, this forces the script to search for input fi
 __How to execute:__
 
 ```
-python3 parameterSearchInChunksSingleThread.py -url "http://victim/" -paramlist params.txt --extended -extendedchar "<" -chunksize 75 --verbose
+python3 parameterSearchInChunksSingleThread.py -url "http://victim/" -paramlist params.txt --extended -extendedchar "<" -chunksize 75 --verbose -wait 5
 ```
 
 This scripts...
@@ -94,6 +94,7 @@ Optional parameters:
 - extended
 - chunksize (default: 75, using a bigger value may result in server errors due small client buffer settings!!)
 - extendedchar
+- wait (default: 0, wait time in seconds between requests)
 
 ### Screenshots
 

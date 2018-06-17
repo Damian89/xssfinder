@@ -52,6 +52,14 @@ def parseArguments():
     )
 
     parser.add_argument(
+        '-wait',
+        help='Wait time between requests in seconds (default: 0)',
+        type=int,
+        dest='waittime',
+        default=0
+    )
+
+    parser.add_argument(
         '--extended',
         nargs='?',
         const=True,
@@ -88,5 +96,6 @@ def getArguments(args):
     paramlist = args.paramlist
     chunksize = args.chunksize
     extendedchar = args.extendedchar
+    waittime = args.waittime
 
-    return withWordList, url, verbose, extended, paramlist, chunksize, extendedchar
+    return withWordList, url, verbose, extended, paramlist, chunksize, extendedchar, waittime
