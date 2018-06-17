@@ -28,4 +28,4 @@ def initialReflectionTest(content, modeextended):
 def reportReflection(content, chunk):
     for param, payload in chunk:
         if payload in content:
-            print(Alert.success() + 'Value of "{}" found in HTML response [Value: {}]'.format(param, payload))
+            print(Alert.reflection() + "Parameter '{}' with value '{}'".format(param, payload))

@@ -7,19 +7,24 @@ class Alert:
     GREEN = '\033[32m'
     BLUE = '\033[34m'
     END = '\033[0m'
+    BR = '\33[41m'
 
     @classmethod
     def error(self):
-        return "{}[ERROR]{}     ".format(self.RED, self.END)
+        return "{}[ERROR]{}      ".format(self.RED, self.END)
 
     @classmethod
     def warning(self):
-        return "{}[WARN]{}      ".format(self.ORANGE, self.END)
+        return "{}[WARN]{}       ".format(self.ORANGE, self.END)
 
     @classmethod
     def success(self):
-        return "{}[SUCCESS]{}   ".format(self.GREEN, self.END)
+        return "{}[SUCCESS]{}    ".format(self.GREEN, self.END)
 
     @classmethod
     def info(self):
-        return "{}[INFO]{}      ".format(self.BLUE, self.END)
+        return "{}[INFO]{}       ".format(self.BLUE, self.END)
+
+    @classmethod
+    def reflection(self):
+        return "{}[REFLECTION]{} ".format(self.BR, self.END)

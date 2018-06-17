@@ -28,6 +28,8 @@ def request(url, verbose=False, waittime=0):
 
         if res.status_code >= 500:
             print(Alert.error() + "Statuscode {}".format(res.status_code))
+            print("Headers:")
+            print(res.headers)
 
         if res.text is None or res.text is '':
             print(Alert.error() + "No content fetched... (WAF?)")
