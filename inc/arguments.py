@@ -11,7 +11,7 @@ def validateArguments(args):
         print(Alert.error() + "URL missing")
         sys.exit(1)
 
-    if args.extended is True and (args.extendedchar is None or args.extendedchar is "") :
+    if args.extended is True and (args.extendedchar is None or args.extendedchar is ""):
         print(Alert.error() + "Please specify a character for extended tests (e.g. > or <)")
         sys.exit(1)
 

@@ -37,7 +37,7 @@ def main():
     initialRequestUrl = baseUrl + "?r4nd0mStr1ng=gn1rtSm0dn4r"
 
     """ Make inital paramter to base url using some bogus random string to verify that its not reflected """
-    content = request(initialRequestUrl, True, waittime)
+    content = request(initialRequestUrl, payload="?r4nd0mStr1ng=gn1rtSm0dn4r", waittime=waittime, showrequest=True)
     initialReflectionTest(content, extended)
 
     """ Extract interesting parameters based on input fields, textareas, ... """
@@ -60,18 +60,19 @@ def main():
     """ Now iterate through every chunk"""
     for iterator, chunk in enumerate(chunkedParmeterList):
 
+        print(Alert.info() + "Request #{} started...".format(iterator + 1))
+
         """ Construct our test url with parameter-value string """
         getQuery = constructGetQuery(chunk)
         testUrl = "{}?{}".format(baseUrl, getQuery)
 
         """ Get the html response """
-        content = request(testUrl, verbose, waittime)
+        content = request(testUrl, payload="?" + getQuery, waittime=waittime, showrequest=verbose)
 
         """ Check if one of the current chunk payloads was found in the html response, if so report..."""
         reportReflection(content, chunk)
 
-        if verbose:
-            print(Alert.info() + "Request #{} finished...".format(iterator + 1))
+        print("")
 
     """ Small reminder for non extended mode """
     if extended == False:
