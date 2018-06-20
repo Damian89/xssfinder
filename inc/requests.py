@@ -3,7 +3,6 @@
 
 import requests
 
-
 from inc.misc.Alert import Alert
 import sys
 import urllib3
@@ -26,9 +25,10 @@ def request(url, payload, waittime=0, showrequest=False):
 
         if res.history and payload not in res.url and showrequest:
             print(Alert.warning() + "Sending new corrected request...")
-            print(Alert.info() + "Corrected request: "+ res.url + payload)
+            print(Alert.info() + "Corrected request: " + res.url + payload)
 
-            confirm(prompt=Alert.info()+"Do you want to proceed? Please check the new url and use verbose mode!", resp=True)
+            confirm(prompt=Alert.info() + "Do you want to proceed? Please check the new url and use verbose mode!",
+                    resp=True)
 
         if res.history and payload not in res.url:
             res = make_request(res.url + payload)
@@ -38,6 +38,7 @@ def request(url, payload, waittime=0, showrequest=False):
 
         if res.status_code > 200 and res.status_code < 500:
             print(Alert.warning() + "Statuscode {}".format(res.status_code))
+            print(res.text)
 
         if res.status_code >= 500:
             print(Alert.error() + "Statuscode {}".format(res.status_code))
@@ -56,8 +57,8 @@ def request(url, payload, waittime=0, showrequest=False):
 
     except Exception as e:
 
-        print(Alert.error() + "Exception while requesting victims url:")
-        print(e)
+        print(Alert.error() + "Exception:")
+        print(Alert.error() + e)
 
         sys.exit(1)
 
@@ -72,14 +73,15 @@ def make_request(url):
         'pragma': 'no-cache',
         'referer': url,
 
-    }, verify=False, timeout=10, allow_redirects=True)
+    }, verify=False, timeout=15, allow_redirects=True)
 
     return res
 
 
 """ Stolen from http://code.activestate.com/recipes/541096-prompt-the-user-for-confirmation/ """
-def confirm(prompt=None, resp=False):
 
+
+def confirm(prompt=None, resp=False):
     if prompt is None:
         prompt = 'Confirm'
 

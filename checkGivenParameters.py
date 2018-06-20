@@ -22,7 +22,7 @@ import sys
 if sys.version_info < (3, 0):
     sys.stdout.write("Sorry, requires Python 3.x\n")
     sys.exit(1)
-
+import re
 import requests
 import urllib3
 import time
@@ -173,47 +173,23 @@ def extractCustomParameters():
         content = res.text
         print(res.status_code)
         status = res.status_code
-        soup = BeautifulSoup(content, 'html.parser')
 
-        for input in soup.find_all("input"):
-            if input.get("id") != None:
-                customParameters.append(input.get("id"))
+        """ Whats this? Extracting all data-* attributes ;) """
+        dataattributes = list(set(re.findall(' data-([a-zA-Z0-9\-\_]+)', content)))
 
-            if input.get("name") != None:
-                customParameters.append(input.get("name"))
+        """ Get all ids of every element ;) """
+        elementids_1 = list(set(re.findall(' id="([a-zA-Z0-9\-\_]+)"', content)))
+        elementids_2 = list(set(re.findall(' id=\'([a-zA-Z0-9\-\_]+)\'', content)))
 
-        for input in soup.find_all("select"):
-            if input.get("id") != None:
-                customParameters.append(input.get("id"))
+        """ Get all names of every element ;) """
+        elementnames_1 = list(set(re.findall(' name="([a-zA-Z0-9\-\_]+)"', content)))
+        elementnames_2 = list(set(re.findall(' name=\'([a-zA-Z0-9\-\_]+)\'', content)))
 
-            if input.get("name") != None:
-                customParameters.append(input.get("name"))
-
-        for input in soup.find_all("textarea"):
-            if input.get("id") != None:
-                customParameters.append(input.get("id"))
-
-            if input.get("name") != None:
-                customParameters.append(input.get("name"))
-
-        for input in soup.find_all("checkbox"):
-            if input.get("id") != None:
-                customParameters.append(input.get("id"))
-
-            if input.get("name") != None:
-                customParameters.append(input.get("name"))
-
-        for input in soup.find_all("button"):
-            if input.get("id") != None:
-                customParameters.append(input.get("id"))
-
-            if input.get("name") != None:
-                customParameters.append(input.get("name"))
 
     except Exception as e:
         pass
 
-    return list(set(customParameters))
+    return list(set(customParameters + dataattributes + elementids_1 + elementids_2 + elementnames_1 + elementnames_2))
 
 
 if __name__ == '__main__':
