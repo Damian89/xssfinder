@@ -39,7 +39,7 @@ headers = {
 parser = argparse.ArgumentParser()
 
 parser.add_argument(
-    '-url',
+    '-u', '--url',
     help='URL target',
     type=str,
     dest='url',
@@ -47,7 +47,7 @@ parser.add_argument(
 )
 
 parser.add_argument(
-    '-payload',
+    '-p', '--payload',
     help='Define payload',
     type=str,
     dest='payload',
@@ -177,19 +177,14 @@ def extractCustomParameters():
         """ Whats this? Extracting all data-* attributes ;) """
         dataattributes = list(set(re.findall(' data-([a-zA-Z0-9\-\_]+)', content)))
 
-        """ Get all ids of every element ;) """
-        elementids_1 = list(set(re.findall(' id="([a-zA-Z0-9\-\_]+)"', content)))
-        elementids_2 = list(set(re.findall(' id=\'([a-zA-Z0-9\-\_]+)\'', content)))
-
-        """ Get all names of every element ;) """
-        elementnames_1 = list(set(re.findall(' name="([a-zA-Z0-9\-\_]+)"', content)))
-        elementnames_2 = list(set(re.findall(' name=\'([a-zA-Z0-9\-\_]+)\'', content)))
+        """ Get all ids and names of every element ;) """
+        elements = list(set(re.findall(' (?:name|id)=["\']?([a-zA-Z0-9\-\_]+)["\']?', content)))
 
 
     except Exception as e:
         pass
 
-    return list(set(customParameters + dataattributes + elementids_1 + elementids_2 + elementnames_1 + elementnames_2))
+    return list(set(customParameters + dataattributes + elements))
 
 
 if __name__ == '__main__':

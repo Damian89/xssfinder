@@ -9,7 +9,7 @@ from inc.misc.Alert import Alert
 
 def getParamsFromWordList(withWordList, paramlist):
     if withWordList == False:
-        print(Alert.warning() + "No wordlist specified - we will use only custom paramters found in HTML response or URL")
+        print(Alert.warning() + "No wordlist specified - we will use only custom parameters found in HTML response or URL")
         return []
 
     if (os.path.exists(paramlist) == False):

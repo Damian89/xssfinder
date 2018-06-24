@@ -29,14 +29,14 @@ def parseArguments():
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
-        '-url',
+        '-u', '--url',
         help='URL target',
         type=str,
         dest='url',
         default=None
     )
     parser.add_argument(
-        '-paramlist',
+        '-p', '--wordlist', '--paramlist',
         help='Path to param list',
         type=str,
         dest='paramlist',
@@ -44,7 +44,7 @@ def parseArguments():
     )
 
     parser.add_argument(
-        '-chunksize',
+        '-c', '--chunksize',
         help='Chunksize for parameters tested in one request (default: 75)',
         type=int,
         dest='chunksize',
@@ -52,7 +52,7 @@ def parseArguments():
     )
 
     parser.add_argument(
-        '-wait',
+        '-w', '--wait',
         help='Wait time between requests in seconds (default: 0)',
         type=int,
         dest='waittime',
@@ -60,7 +60,7 @@ def parseArguments():
     )
 
     parser.add_argument(
-        '--extended',
+        '-e', '--extended',
         nargs='?',
         const=True,
         help='Use extended payload tests',
@@ -69,7 +69,7 @@ def parseArguments():
     )
 
     parser.add_argument(
-        '-extendedchar',
+        '-ec', '--extendedchar',
         nargs='?',
         help='Character or String for extended tests',
         dest='extendedchar',
@@ -77,7 +77,7 @@ def parseArguments():
     )
 
     parser.add_argument(
-        '--verbose',
+        '-v', '--verbose',
         nargs='?',
         const=True,
         help='Use verbose mode?',
