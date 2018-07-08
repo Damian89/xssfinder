@@ -85,6 +85,14 @@ def parseArguments():
         default=False
     )
 
+    parser.add_argument(
+        '-b', '--cookie',
+        nargs='?',
+        help='Cookies for the request: (name=value; name=value)',
+        dest='cookies',
+        default=""
+    )
+
     return parser.parse_args()
 
 
@@ -97,5 +105,6 @@ def getArguments(args):
     chunksize = args.chunksize
     extendedchar = args.extendedchar
     waittime = args.waittime
+    cookies = args.cookies
 
-    return withWordList, url, verbose, extended, paramlist, chunksize, extendedchar, waittime
+    return withWordList, url, verbose, extended, paramlist, chunksize, extendedchar, waittime, cookies

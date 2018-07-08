@@ -29,7 +29,7 @@ def main():
     validateArguments(args)
 
     """ Save input arguments """
-    withWordList, url, verbose, extended, paramlist, chunksize, extendedchar, waittime = getArguments(args)
+    withWordList, url, verbose, extended, paramlist, chunksize, extendedchar, waittime, cookies = getArguments(args)
 
     """ Deconstruct input url into base url without query string and list of query parameters """
     baseUrl, parametersInUrl = deconstructUrl(url)
@@ -37,7 +37,7 @@ def main():
     initialRequestUrl = baseUrl + "?r4nd0mStr1ng=gn1rtSm0dn4r"
 
     """ Make inital paramter to base url using some bogus random string to verify that its not reflected """
-    content = request(initialRequestUrl, payload="?r4nd0mStr1ng=gn1rtSm0dn4r", waittime=waittime, showrequest=True)
+    content = request(initialRequestUrl, payload="?r4nd0mStr1ng=gn1rtSm0dn4r", waittime=waittime, showrequest=True, cookies=cookies)
     initialReflectionTest(content, extended)
 
     """ Extract interesting parameters based on input fields, textareas, ... """
@@ -67,7 +67,7 @@ def main():
         testUrl = "{}?{}".format(baseUrl, getQuery)
 
         """ Get the html response """
-        content = request(testUrl, payload="?" + getQuery, waittime=waittime, showrequest=verbose)
+        content = request(testUrl, payload="?" + getQuery, waittime=waittime, showrequest=verbose, cookies=cookies)
 
         """ Check if one of the current chunk payloads was found in the html response, if so report..."""
         reportReflection(content, chunk)
