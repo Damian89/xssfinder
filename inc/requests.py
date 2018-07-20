@@ -8,7 +8,7 @@ import sys
 import urllib3
 import time
 
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+urllib3.disable_warnings()
 
 
 def request(url, payload, waittime=0, showrequest=False, cookies=None):
