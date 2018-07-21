@@ -35,17 +35,18 @@ def request(url, payload, waittime=0, showrequest=False):
 
         if res.status_code is 200:
             print(Alert.success() + "Statuscode 200")
+            print(url)
 
         if res.status_code > 200 and res.status_code < 500:
             print(Alert.warning() + "Statuscode {}".format(res.status_code))
-            print(res.text)
+            print(url)
 
         if res.status_code >= 500:
             print(Alert.error() + "Statuscode {}".format(res.status_code))
+            print(url)
 
         if res.text is None or res.text is '':
             print(Alert.error() + "No content fetched... (WAF?)")
-
         else:
             print(Alert.success() + "Content Length: {}".format(len(res.text)))
 
