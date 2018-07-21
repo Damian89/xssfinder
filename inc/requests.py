@@ -11,13 +11,13 @@ import time
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
-def request(url, payload, waittime=0, showrequest=False):
+def request(url, payload, waittime=0, showrequest=False, cookies=None):
     if showrequest:
         print(Alert.info() + "Scraping '{}' ...".format(url))
 
     try:
 
-        res = make_request(url)
+        res = make_request(url, cookies)
 
         if res.history and showrequest:
             print(Alert.warning() + "Request was redirected")
@@ -31,7 +31,7 @@ def request(url, payload, waittime=0, showrequest=False):
                     resp=True)
 
         if res.history and payload not in res.url:
-            res = make_request(res.url + payload)
+            res = make_request(res.url + payload, cookies)
 
         if res.status_code is 200:
             print(Alert.success() + "Statuscode 200")
@@ -64,16 +64,16 @@ def request(url, payload, waittime=0, showrequest=False):
         sys.exit(1)
 
 
-def make_request(url):
+def make_request(url, cookies=None):
     res = requests.get(url, headers={
         'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
-        'accept-language': 'de-DE,de;q=0.9,en-US;q=0.8,en;q=0.7,nl;q=0.6',
+        'accept-language': 'en-US,en;q=0.9',
         'accept-encoding': 'gzip, deflate, br',
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.',
         'cache-control': 'no-cache',
         'pragma': 'no-cache',
         'referer': url,
-
+        'cookie': cookies,
     }, verify=False, timeout=15, allow_redirects=True)
 
     return res
