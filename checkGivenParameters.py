@@ -166,6 +166,9 @@ def prepareTestUrls(baseUrl, parameters_in_url):
 
 def extractCustomParameters():
     customParameters = []
+    dataattributes = []
+    elements = []
+    vars = []
 
     try:
         print("\033[91mScraping URL...\033[0m")
@@ -180,11 +183,13 @@ def extractCustomParameters():
         """ Get all ids and names of every element ;) """
         elements = list(set(re.findall(' (?:name|id)=["\']?([a-zA-Z0-9\-\_]+)["\']?', content)))
 
+        """ Get all js variables from content """
+        vars = list(set(re.findall('var\s?([a-zA-Z0-9\-\_]+)\s?=\s?', content)))
 
     except Exception as e:
         pass
 
-    return list(set(customParameters + dataattributes + elements))
+    return list(set(customParameters + dataattributes + elements + vars))
 
 
 if __name__ == '__main__':

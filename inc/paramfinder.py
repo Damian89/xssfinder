@@ -14,7 +14,10 @@ def getInterestingParameters(content):
     """ Get all ids and names of every element ;) """
     elements = list(set(re.findall(' (?:name|id)=["\']?([a-zA-Z0-9\-\_]+)["\']?', content)))
 
-    return list(set(customParameters + dataattributes + elements))
+    """ Get all js variables from content """
+    vars = list(set(re.findall('var\s?([a-zA-Z0-9\-\_]+)\s?=\s?', content)))
+
+    return list(set(customParameters + dataattributes + elements + vars))
 
 
 def reportParameterFindingInDom(interestingParameters):
