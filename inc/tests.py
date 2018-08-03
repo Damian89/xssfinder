@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf8
 
+from inc.misc.Global import *
 from inc.misc.Alert import Alert
 import sys
 
@@ -28,4 +29,6 @@ def initialReflectionTest(content, modeextended):
 def reportReflection(content, chunk):
     for param, payload in chunk:
         if payload in content:
+            all_reflections[param] = payload
             print(Alert.reflection() + "Parameter '{}' with value '{}'".format(param, payload))
+

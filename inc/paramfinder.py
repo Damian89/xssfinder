@@ -12,10 +12,10 @@ def getInterestingParameters(content):
     dataattributes = list(set(re.findall(' data-([a-zA-Z0-9\-\_]+)', content)))
 
     """ Get all ids and names of every element ;) """
-    elements = list(set(re.findall(' (?:name|id)=["\']?([a-zA-Z0-9\-\_]+)["\']?', content)))
+    elements = list(set(re.findall(' (?:name|id)\s+?=\s+?["\']?([a-zA-Z0-9\-\_]+)["\']?', content)))
 
     """ Get all js variables from content """
-    vars = list(set(re.findall('var\s?([a-zA-Z0-9\-\_]+)\s?=\s?', content)))
+    vars = list(set(re.findall('var\s+?([a-zA-Z0-9\-\_]+)\s+?=', content)))
 
     return list(set(customParameters + dataattributes + elements + vars))
 

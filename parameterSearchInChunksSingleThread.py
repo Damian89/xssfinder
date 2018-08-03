@@ -8,6 +8,8 @@ if sys.version_info < (3, 0):
     sys.exit(1)
 
 import time
+import urllib
+from inc.misc.Global import *
 from inc.misc.Alert import Alert
 from inc.arguments import parseArguments, validateArguments, getArguments
 from inc.requests import request
@@ -81,6 +83,10 @@ def main():
                 "extended mode with some special characters like double quote, 'less than' or 'greater than' "
                 "to check if those characters are reflected as well without sanitization: --extended -extendedchar '><'")
 
+    """ Report all findings """
+    if len(all_reflections) > 0:
+        print("\nFinal report: {}?{}\n".format(url, urllib.parse.urlencode(all_reflections)))
+    
     end = time.time()
     print("Process finished after: {} seconds".format(end - start))
 
