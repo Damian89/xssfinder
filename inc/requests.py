@@ -35,15 +35,15 @@ def request(url, payload, waittime=0, showrequest=False, cookies=None):
 
         if res.status_code is 200:
             print(Alert.success() + "Statuscode 200")
-            print(url)
+            print(url, file=sys.stderr)
 
         if res.status_code > 200 and res.status_code < 500:
             print(Alert.warning() + "Statuscode {}".format(res.status_code))
-            print(url)
+            print(url, file=sys.stderr)
 
         if res.status_code >= 500:
             print(Alert.error() + "Statuscode {}".format(res.status_code))
-            print(url)
+            print(url, file=sys.stderr)
 
         if res.text is None or res.text is '':
             print(Alert.error() + "No content fetched... (WAF?)")
@@ -68,8 +68,8 @@ def make_request(url, cookies=None):
     res = requests.get(url, headers={
         'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
         'accept-language': 'en-US,en;q=0.9',
-        'accept-encoding': 'gzip, deflate, br',
-        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.',
+        'accept-encoding': 'gzip, deflate',
+        'accept': '*/*',
         'cache-control': 'no-cache',
         'pragma': 'no-cache',
         'referer': url,
