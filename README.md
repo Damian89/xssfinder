@@ -40,7 +40,7 @@ XSS on a General Motors subdomain
 __How to execute:__
 
 ```
-python3 parameterSearchInChunksSingleThread.py -url "http://victim/" -paramlist params.txt --extended -extendedchar "<" -chunksize 75 --verbose -wait 5
+python3 parameterSearchInChunksSingleThread.py -u "http://victim/" --paramlist wordlists/params.txt --extended --extendedchar "<" --chunksize 75 --verbose --wait 5
 ```
 
 This scripts...
